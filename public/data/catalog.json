@@ -1,0 +1,42 @@
+[
+  {
+    "copy_id": "S001",
+    "title": "建筑：形式、空间和秩序",
+    "shelf_id": "2F-A01"
+  },
+  {
+    "copy_id": "S002",
+    "title": "设计心理学",
+    "shelf_id": "2F-A02"
+  },
+  {
+    "copy_id": "S003",
+    "title": "乡土中国",
+    "shelf_id": "2F-A03"
+  },
+  {
+    "copy_id": "S004",
+    "title": "历史的地理枢纽",
+    "shelf_id": "2F-A04"
+  },
+  {
+    "copy_id": "S005",
+    "title": "时间简史",
+    "shelf_id": "3F-B01"
+  },
+  {
+    "copy_id": "S006",
+    "title": "计算机程序的构造和解释",
+    "shelf_id": "3F-B02"
+  },
+  {
+    "copy_id": "S007",
+    "title": "工程之美",
+    "shelf_id": "3F-B03"
+  },
+  {
+    "copy_id": "S008",
+    "title": "寂静的春天",
+    "shelf_id": "3F-B04"
+  }
+]

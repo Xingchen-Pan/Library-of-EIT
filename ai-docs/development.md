@@ -1,46 +1,23 @@
 # 开发指南
 
-## 环境与命令
-
-使用 Bun 安装依赖并启动开发服务器：
+从仓库根目录使用 Bun 安装和启动，Node 需满足锁定 Vite 的 engines 条件。环境版本与依赖用途见[技术基线](standards/baseline.md)。
 
 ```sh
 bun install --frozen-lockfile
 bun run dev
 ```
 
-常用检查与构建：
+打开开发服务器输出的地址。搜索“计算机”并选择结果会切换到 3F、选中 B02 书架。切换三维视图后可拖动旋转、滚轮缩放或点选书架。默认数据来自随构建发布的示例 JSON，开发时可独立于 Go 运行。
+
+## 验证与构建
 
 ```sh
-bun run format:check
-bun run lint
-bun run typecheck
-bun run test
+bun run check
 bun run build
+bun run playwright install chromium --only-shell
+bun run test:e2e
 ```
 
-`bun run check` 会依次运行格式、lint、类型和测试检查。提交时 `.husky/pre-commit` 只检查格式；
-推送时 `.husky/pre-push` 检查格式、lint 和测试。检查由 TypeScript 脚本
-`scripts/git-hook.ts` 调用 Bun 执行，适用于 Windows 和 Linux。
-`bun install` 会通过 `prepare` 自动将 Git hooks 指向 `.husky`；需要手动重装时可运行
-`bun run hooks:install`。
+`check` 依次运行格式、lint、TS7 和单元测试。`build` 先检查类型再构建到 `dist/`。浏览器测试自动启动生产预览；单独预览可运行 `bun run preview`。浏览器测试后若修改了应用，先重建再测试。Linux CI 的浏览器安装命令及门禁见[CI 与发布](standards/ci.md)。
 
-`bun run build` 会先执行 Vue / TypeScript 类型检查，再由 Vite 输出生产文件到 `dist/`。使用 `bun run preview` 可本地预览构建结果。
-
-测试使用 Bun 内置测试运行器；组件测试通过 Vite 加载 Vue 单文件组件。
-
-## 依赖说明
-
-运行时依赖保持精简：
-
-- `vue`：页面组件和响应式状态。
-
-开发依赖提供构建、类型检查和代码质量工具：
-
-- `vite`：开发服务器与生产构建。
-- `@vitejs/plugin-vue`：让 Vite 编译 Vue 单文件组件。
-- `typescript`、`vue-tsc`：TypeScript 及 Vue 模板类型检查。
-- `tailwindcss`、`@tailwindcss/vite`：Tailwind CSS 4 与 Vite 集成。
-- `@biomejs/biome`：格式化及 lint。
-
-`bun.lock` 与 `package.json` 一起提交。添加或移除依赖时重新生成锁文件，并同步本节说明。当前示例不包含外部测试框架、路由或全局状态库。
+安装时 prepare 注册 Git hooks，可用 `bun run hooks:install` 重装。pre-commit 检查格式，pre-push 检查格式、lint 和单元测试。新增依赖时同时更新清单、锁文件、[依赖与验证对照](standards/baseline.md)和对应测试。
