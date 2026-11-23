@@ -3,7 +3,13 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "**/*.md"
+      - "ai-docs/**"
   pull_request:
+    paths-ignore:
+      - "**/*.md"
+      - "ai-docs/**"
 
 permissions:
   contents: read
@@ -21,6 +27,14 @@ jobs:
         with:
           bun-version: 1.4.5
 
+      - name: Cache Bun packages
+        uses: actions/cache@v6.1.0
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            bun-${{ runner.os }}-${{ runner.arch }}-
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
@@ -29,6 +43,12 @@ jobs:
 
       - name: Build production bundle
         run: bun run build
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-shell-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('node_modules/playwright-core/browsers.json') }}
 
       - name: Install headless Chromium
         run: bun run playwright install --with-deps chromium --only-shell
