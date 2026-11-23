@@ -1,17 +1,194 @@
 @import "tailwindcss";
 
 :root {
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Hedvig Letters Sans", system-ui, sans-serif;
+  color: #20372d;
+  background: #f6f6ef;
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #f8fafc;
 }
-
 body {
-  min-width: 320px;
-  min-height: 100vh;
   margin: 0;
+  min-width: 320px;
+}
+.shell {
+  max-width: 1240px;
+  padding: 0 clamp(18px, 4vw, 65px) 48px;
+}
+.masthead {
+  height: 70px;
+  border-bottom: 1px solid #cbd2c4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  background: #285e4f;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  font-size: 24px;
+}
+h1 {
+  font-size: clamp(34px, 4.5vw, 56px);
+  letter-spacing: -0.045em;
+  margin: 32px 0 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+h2 {
+  font-weight: 650;
+  font-size: 20px;
+  margin: 0;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(245px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.map-panel,
+.catalog {
+  background: #fffefa;
+  border: 1px solid #cdd4c7;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.panel-header,
+.map-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+}
+.map-toolbar {
+  font-size: 13px;
+  color: #526358;
+}
+.switch {
+  background: #f0f2eb;
+  border-radius: 8px;
+  padding: 3px;
+}
+.map-area {
+  background: #eef1e8;
+  position: relative;
+}
+.plan-board {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 310px;
+  height: clamp(310px, 32vw, 455px);
+  background-image: radial-gradient(#c8cec0 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.plan-compass {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  color: #49634f;
+  font: 600 12px monospace;
+}
+.plan-room {
+  position: relative;
+  width: 85%;
+  aspect-ratio: 5 / 3;
+  border: 4px double #687b6f;
+  background: #faf9f0;
+  box-shadow: 6px 6px 0 #c6cfc2;
+}
+.shelf {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 3px;
+  width: 39%;
+  padding: clamp(5px, 1vw, 14px) 0;
+  cursor: pointer;
+  background: #d8e3d5;
+  border: 1px solid #779381;
+  border-inline-width: 4px;
+  color: #233f32;
+  border-radius: 2px;
+}
+.shelf strong,
+.book-list small,
+.selection strong {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+.shelf strong {
+  letter-spacing: 0.08em;
+}
+.shelf span {
+  font-size: 12px;
+}
+.shelf[aria-pressed="true"] {
+  background: #f2d9aa;
+  border-color: #98682b;
+  color: #61461e;
+}
+.entrance {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 60%);
+  background: #faf9f0;
+  padding: 0 8px;
+  font-size: 12px;
+}
+.model-view {
+  height: clamp(310px, 32vw, 455px);
+}
+.model-view canvas {
+  display: block;
+}
+.selection {
+  min-height: 45px;
+  background: #eff3eb;
+  padding: 12px 22px;
+  font-size: 14px;
+}
+.catalog {
+  padding: 20px;
+}
+.catalog h2 {
+  margin-bottom: 14px;
+}
+.book-list {
+  padding: 0;
+  margin: 12px 0 0;
+  list-style: none;
+}
+.book-list li + li {
+  border-top: 1px solid #e4e7df;
+}
+.book-list .ant-btn {
+  width: 100%;
+  height: auto;
+  min-height: 44px;
+  justify-content: space-between;
+  text-align: start;
+  white-space: normal;
+  padding: 9px 2px;
+}
+.book-list small {
+  color: #607066;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .masthead {
+    height: 54px;
+  }
+  h1 {
+    margin: 22px 0 16px;
+  }
 }

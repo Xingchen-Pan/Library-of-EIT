@@ -6,28 +6,38 @@
     "dev": "vite",
     "build": "bun run typecheck && vite build",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "biome lint . --error-on-warnings",
     "lint:fix": "biome lint --write . --error-on-warnings",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "test": "bun test",
+    "test": "bun test tests/unit",
     "check": "bun run format:check && bun run lint && bun run typecheck && bun run test",
     "pre-commit": "bun run scripts/git-hook.ts pre-commit",
     "pre-push": "bun run scripts/git-hook.ts pre-push",
     "hooks:install": "git config core.hooksPath .husky",
-    "prepare": "bun run hooks:install"
+    "prepare": "bun run hooks:install",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "vue": "^3.5.43"
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.187.0",
+    "antd": "6.7.2",
+    "zustand": "5.1.0",
+    "@tanstack/react-query": "5.108.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
     "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-vue": "^6.0.9",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3",
+    "typescript": "7.0.2",
     "vite": "^8.3.2",
-    "vue-tsc": "^3.3.12"
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.187.0",
+    "@types/bun": "1.4.5",
+    "@vitejs/plugin-react": "6.3.0",
+    "@playwright/test": "1.65.1"
   }
 }
