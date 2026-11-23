@@ -10,7 +10,13 @@
     "lint": "biome lint . --error-on-warnings",
     "lint:fix": "biome lint --write . --error-on-warnings",
     "format": "biome format --write .",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "test": "bun test",
+    "check": "bun run format:check && bun run lint && bun run typecheck && bun run test",
+    "pre-commit": "bun run scripts/git-hook.ts pre-commit",
+    "pre-push": "bun run scripts/git-hook.ts pre-push",
+    "hooks:install": "git config core.hooksPath .husky",
+    "prepare": "bun run hooks:install"
   },
   "dependencies": {
     "vue": "^3.5.43"
